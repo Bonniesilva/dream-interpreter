@@ -121,61 +121,133 @@
 
 ### Step 5.5：梦境幻象图生成
 
-每次解梦完成后，**自动生成一张梦境幻象图**，无需用户主动请求。
+解梦报告发送完毕后，**询问用户是否生成梦境幻象图，并让用户选择风格**。
 
-**生成流程：**
-1. 从梦境核心意象提取3-5个关键词（英文）
-2. 构造图像 prompt（固定风格词 + 动态意象词）
-3. 调用图像生成脚本
-4. 将图片发送给用户
+**第一步：发送风格选择**
 
-**Prompt 构造规则：**
+用 `message` 工具发送以下内容（带按钮）：
+
 ```
-[意象描述], surreal dreamscape, Chinese ink wash painting style, 
-traditional meets surrealism, moonlit atmosphere, ethereal mist, 
-dark and mysterious, ultra-detailed, cinematic lighting, 
-dream-like quality, floating elements, [情绪色调]
+🎨 要把这个梦画出来吗？选一个你喜欢的风格：
+
+🏛️ 神话史诗 — 汉服飘逸，希腊×东方，琥珀金光
+🌊 水墨禅意 — 纯东方水墨，留白意境，黑白淡青
+🌌 赛博仙境 — 霓虹×古典，科幻神话，紫蓝发光
+🌸 梦幻唯美 — 樱花雨，柔光粉紫，治愈系
 ```
 
-**情绪色调映射：**
-- 大吉 → `golden luminous, hopeful, radiant dawn colors`
-- 小吉 → `soft warm tones, gentle light, peaceful`
-- 平  → `neutral tones, balanced, misty grey-blue`
-- 小凶 → `dark indigo, ominous clouds, subtle tension`
-- 大凶 → `deep crimson shadows, stormy, turbulent darkness`
+buttons:
+- `🏛️ 神话史诗` → callback_data: `dream_img_epic`
+- `🌊 水墨禅意` → callback_data: `dream_img_ink`
+- `🌌 赛博仙境` → callback_data: `dream_img_cyber`
+- `🌸 梦幻唯美` → callback_data: `dream_img_floral`
+- `跳过` → callback_data: `dream_img_skip`
+
+**第二步：根据选择构造 Prompt**
+
+将梦境核心意象（3-5个英文关键词）+ 风格模板组合：
+
+**🏛️ 神话史诗：**
+```
+A young Asian male figure wearing flowing white and gold hanfu robes, [意象关键词融入人物与服饰],
+soft divine light emanating from within, ancient stone columns fading into mist,
+Chinese mythology meets Greek epic art, pearl white amber and soft violet palette,
+cinematic composition, ultra-detailed fine brushwork, serene transcendent atmosphere,
+beautiful and elegant, perfect for social media
+```
+
+**🌊 水墨禅意：**
+```
+Traditional Chinese ink wash painting, [意象关键词], lone figure in flowing robes,
+minimalist brushwork, vast negative space, misty mountains, ink bleeding on rice paper texture,
+soft grey-blue and black tones, meditative and serene, master-level calligraphy aesthetic
+```
+
+**🌌 赛博仙境：**
+```
+Cyberpunk meets ancient Chinese mythology, [意象关键词], figure in glowing neon-lit hanfu,
+circuit patterns woven into traditional fabric, holographic jade artifacts floating,
+neon purple and electric blue against dark background, ultra-detailed, cinematic,
+futuristic divine aesthetic
+```
+
+**🌸 梦幻唯美：**
+```
+Dreamy ethereal scene, [意象关键词], soft watercolor style, figure surrounded by cherry blossoms
+and floating petals, pastel pink lavender and cream tones, gentle glowing light,
+romantic and healing atmosphere, illustration style, delicate and beautiful
+```
 
 **意象→英文关键词映射：**
-- 水/海/河 → `flowing water, dark river, misty lake`
-- 蛇 → `serpent coiling, scales gleaming`
-- 龙 → `dragon soaring, celestial dragon`
-- 飞翔 → `figure soaring through clouds, weightless flight`
-- 追逐 → `shadowy figures running, endless corridor`
-- 坠落 → `falling through void, swirling abyss`
-- 火 → `flames dancing, ember sparks`
-- 考试 → `ancient scroll, ink brush, examination hall`
-- 牙齿 → `floating teeth, crumbling stone`
-- 家人/人物 → `silhouetted figures, ghostly presence`
-- 动物 → `[animal name] spirit form, mythical creature`
+- 水/海/河 → `flowing water, misty river`
+- 蛇 → `luminous serpent emerging from within the sleeve, serpent merged with body`
+- 龙 → `celestial dragon soaring`
+- 飞翔 → `figure soaring through clouds, weightless`
+- 追逐 → `fleeing through endless corridor`
+- 坠落 → `falling through swirling void`
+- 火 → `flames and ember sparks`
+- 考试 → `ancient scroll, ink brush`
+- 家人/人物 → `ethereal silhouetted figures`
+- 动物 → `[animal] spirit form`
 
-**调用命令：**
+**第三步：生成图片**
+
 ```bash
-uv run /Users/openclaw/.openclaw/workspace/.agents/skills/nano-banana-pro/scripts/generate_image.py \
-  --prompt "[构造的prompt]" \
-  --filename "/Users/openclaw/.openclaw/workspace/dream-[日期]-[随机3位数].png" \
-  --resolution 1K \
+uv run /tmp/dream_gen.py --prompt "[构造的prompt]" \
+  --filename "/Users/openclaw/.openclaw/workspace/dream-[YYYY-MM-DD]-[意象词].png" \
+  --resolution 2K \
   --api-key AIzaSyAsht5bO-nUQUuXeH1NT26e3C9QEJNyQVg
 ```
 
-**代理注意：** google-genai SDK 不读系统代理，需使用带 httpx monkey-patch 的包装脚本：
-```bash
-uv run /tmp/dream_gen.py --prompt "[prompt]" --filename "[path]" --resolution 1K --api-key AIzaSyAsht5bO-nUQUuXeH1NT26e3C9QEJNyQVg
+**代理注意：** google-genai SDK 不读系统代理，必须用 `/tmp/dream_gen.py`（含 httpx monkey-patch）。
+若脚本不存在，从以下内容重建：
+```python
+#!/usr/bin/env python3
+# /// script
+# requires-python = ">=3.10"
+# dependencies = ["google-genai>=1.0.0","pillow>=10.0.0","httpx>=0.27.0"]
+# ///
+import os,sys,argparse
+from pathlib import Path
+PROXY="http://127.0.0.1:7897"
+import httpx
+_o=httpx.Client.__init__
+def _p(self,*a,**k):
+    if 'proxies' not in k and 'proxy' not in k: k['proxy']=PROXY
+    _o(self,*a,**k)
+httpx.Client.__init__=_p
+_oa=httpx.AsyncClient.__init__
+def _pa(self,*a,**k):
+    if 'proxies' not in k and 'proxy' not in k: k['proxy']=PROXY
+    _oa(self,*a,**k)
+httpx.AsyncClient.__init__=_pa
+parser=argparse.ArgumentParser()
+parser.add_argument('--prompt',required=True)
+parser.add_argument('--filename',required=True)
+parser.add_argument('--resolution',default='1K',choices=['1K','2K','4K'])
+parser.add_argument('--api-key')
+args=parser.parse_args()
+api_key=args.api_key or os.environ.get('GEMINI_API_KEY')
+from google import genai
+from google.genai import types
+from PIL import Image as PILImage
+from io import BytesIO
+client=genai.Client(api_key=api_key)
+response=client.models.generate_images(model='imagen-4.0-generate-001',prompt=args.prompt,config=types.GenerateImagesConfig(number_of_images=1,aspect_ratio='1:1'))
+img_data=response.generated_images[0].image.image_bytes
+image=PILImage.open(BytesIO(img_data))
+out=Path(args.filename)
+out.parent.mkdir(parents=True,exist_ok=True)
+image.convert('RGB').save(str(out),'PNG')
+print(f'Image saved: {out.resolve()}')
 ```
-包装脚本路径：`/tmp/dream_gen.py`（若不存在则从 MEMORY.md 代理配置重建）
 
-生成后用 `message` 工具发送图片，caption 写：
-`🎨 梦境幻象图 · [今日日期]\n根据你的梦境意象生成，可保存转发`
+**第四步：发送图片**
 
-若生成失败（网络/API问题），静默跳过，不影响主流程。
+用 `message` 工具发送，caption：
+`🎨 梦境幻象图 · [今日日期]\n[风格名] 风格 · 可保存转发`
+
+若用户选择「跳过」或生成失败，静默跳过，不影响主流程。
 
 ### Step 6：记录梦境到 dreams.json
 
