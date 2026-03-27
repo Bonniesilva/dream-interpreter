@@ -156,14 +156,18 @@
 ```
 🎨 要把这个梦画出来吗？选一个你喜欢的风格：
 
-🏛️ 神话史诗 — 汉服飘逸，希腊×东方，琥珀金光
+🏙️ 现代都市 — 普通人置身超现实梦境，最有代入感
+🏛️ 神话史诗 — 现代人×古典神话场景，琥珀金光
+🎋 古风仙境 — 传统古风意境，仙气飘飘
 🌊 水墨禅意 — 纯东方水墨，留白意境，黑白淡青
-🌌 赛博仙境 — 霓虹×古典，科幻神话，紫蓝发光
+🌌 赛博仙境 — 霓虹街头，科幻超现实，紫蓝发光
 🌸 梦幻唯美 — 樱花雨，柔光粉紫，治愈系
 ```
 
 buttons:
+- `🏙️ 现代都市` → callback_data: `dream_img_modern`
 - `🏛️ 神话史诗` → callback_data: `dream_img_epic`
+- `🎋 古风仙境` → callback_data: `dream_img_ancient`
 - `🌊 水墨禅意` → callback_data: `dream_img_ink`
 - `🌌 赛博仙境` → callback_data: `dream_img_cyber`
 - `🌸 梦幻唯美` → callback_data: `dream_img_floral`
@@ -173,6 +177,15 @@ buttons:
 
 将梦境核心意象（3-5个英文关键词）+ 风格模板组合：
 
+**🏙️ 现代都市：**
+```
+A young Asian person in everyday modern clothes (casual t-shirt, jeans or simple outfit), [意象关键词融入周围环境],
+surrounded by surreal dream elements emerging from ordinary city streets,
+realistic human figure in dreamlike scenario, soft cinematic lighting,
+contemporary photography meets surrealism, natural skin tones with ethereal glow,
+highly detailed, relatable and immersive, perfect for social media
+```
+
 **🏛️ 神话史诗：**
 ```
 A young Asian male figure in modern casual clothes (t-shirt or shirt), [意象关键词融入场景与光效],
@@ -180,6 +193,14 @@ soft divine light emanating from within, ancient stone columns fading into mist,
 contemporary person in mythic dreamscape, pearl white amber and soft violet palette,
 cinematic composition, ultra-detailed, serene transcendent atmosphere,
 beautiful and elegant, perfect for social media
+```
+
+**🎋 古风仙境：**
+```
+Traditional Chinese fantasy scene, figure in elegant ancient Chinese hanfu robes, [意象关键词],
+misty mountain peaks, floating pavilions, cranes soaring, peach blossom petals drifting,
+soft jade green and celestial blue palette, ethereal immortal atmosphere,
+painterly illustration style, serene and majestic, classical Chinese art aesthetic
 ```
 
 **🌊 水墨禅意：**
@@ -548,11 +569,16 @@ print('saved')
 
 ### 图片生成性别与风格规则
 
-- 默认生成**男性**人物（亚裔男性，现代都市感，普通人气质）
-- 若用户明确说女性，则改为女性
-- 风格固定：**现代写实 × 梦境超现实**，当代人物置于超自然梦境场景中，适合发朋友圈
-- **禁止汉服、古装、神话袍服**——人物穿着现代日常服装（T恤、衬衫、便服等）
-- 色调：珍珠白、琥珀金、薰衣草紫、深海蓝——**禁止暗红恐怖系**
-- 人物要有**带入感**：第一视角或略俯视角，让观者感觉「这就是我」
+- 默认生成**男性**人物（可根据用户明确指定改为女性）
+- 共6种风格，各有不同服装与场景规范：
+  - **现代都市**：现代日常便装（T恤/牛仔裤），普通人置于超现实场景，最有代入感
+  - **神话史诗**：现代便装人物置于古典神话场景，琥珀金光，希腊×东方混搭
+  - **古风仙境**：汉服古装，传统仙侠意境，仙气飘飘——此风格允许古装
+  - **水墨禅意**：水墨画风，传统东方意境，留白禅意
+  - **赛博仙境**：现代街头服装+霓虹科幻元素，未来超现实
+  - **梦幻唯美**：柔光水彩，樱花系，治愈系少女感
+- **现代/赛博/神话史诗风格禁止古装汉服**，古风仙境风格专属古装
+- 色调：各风格有专属色调，但**禁止暗红恐怖系**
+- 人物要有**带入感**：略俯视角或平视角，让观者感觉「这就是我」
 - 梦境元素从人物**体内向外生长**，而非外部攻击——表达内在力量
 - 无论吉凶，图片必须**美丽、梦幻、适合社交媒体分享**
