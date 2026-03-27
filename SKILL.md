@@ -8,6 +8,8 @@
 - 「这个梦是什么意思」「梦到X是什么预兆」
 - 「查询我的梦境记录」「梦境历史」「梦境规律」
 - 「梦境日历」「梦境报告」「上个月梦境」
+- 「今日运势」「今天运势」「根据梦境看今天」
+- 「抽签」「梦境签」「给我一签」「抽个签」
 
 ## 数据存储
 
@@ -116,6 +118,64 @@
 当用户回复「播报」「语音」「读给我听」时：
 - 调用 tts 工具朗读报告正文（去掉 emoji 和分隔线）
 - 朗读完毕后回复 NO_REPLY
+
+### Step 5.5：梦境幻象图生成
+
+每次解梦完成后，**自动生成一张梦境幻象图**，无需用户主动请求。
+
+**生成流程：**
+1. 从梦境核心意象提取3-5个关键词（英文）
+2. 构造图像 prompt（固定风格词 + 动态意象词）
+3. 调用图像生成脚本
+4. 将图片发送给用户
+
+**Prompt 构造规则：**
+```
+[意象描述], surreal dreamscape, Chinese ink wash painting style, 
+traditional meets surrealism, moonlit atmosphere, ethereal mist, 
+dark and mysterious, ultra-detailed, cinematic lighting, 
+dream-like quality, floating elements, [情绪色调]
+```
+
+**情绪色调映射：**
+- 大吉 → `golden luminous, hopeful, radiant dawn colors`
+- 小吉 → `soft warm tones, gentle light, peaceful`
+- 平  → `neutral tones, balanced, misty grey-blue`
+- 小凶 → `dark indigo, ominous clouds, subtle tension`
+- 大凶 → `deep crimson shadows, stormy, turbulent darkness`
+
+**意象→英文关键词映射：**
+- 水/海/河 → `flowing water, dark river, misty lake`
+- 蛇 → `serpent coiling, scales gleaming`
+- 龙 → `dragon soaring, celestial dragon`
+- 飞翔 → `figure soaring through clouds, weightless flight`
+- 追逐 → `shadowy figures running, endless corridor`
+- 坠落 → `falling through void, swirling abyss`
+- 火 → `flames dancing, ember sparks`
+- 考试 → `ancient scroll, ink brush, examination hall`
+- 牙齿 → `floating teeth, crumbling stone`
+- 家人/人物 → `silhouetted figures, ghostly presence`
+- 动物 → `[animal name] spirit form, mythical creature`
+
+**调用命令：**
+```bash
+uv run /Users/openclaw/.openclaw/workspace/.agents/skills/nano-banana-pro/scripts/generate_image.py \
+  --prompt "[构造的prompt]" \
+  --filename "/Users/openclaw/.openclaw/workspace/dream-[日期]-[随机3位数].png" \
+  --resolution 1K \
+  --api-key $GEMINI_API_KEY
+```
+
+**代理注意：** google-genai SDK 不读系统代理，需使用带 httpx monkey-patch 的包装脚本：
+```bash
+uv run /tmp/dream_gen.py --prompt "[prompt]" --filename "[path]" --resolution 1K --api-key $GEMINI_API_KEY
+```
+包装脚本路径：`/tmp/dream_gen.py`（若不存在则从 MEMORY.md 代理配置重建）
+
+生成后用 `message` 工具发送图片，caption 写：
+`🎨 梦境幻象图 · [今日日期]\n根据你的梦境意象生成，可保存转发`
+
+若生成失败（网络/API问题），静默跳过，不影响主流程。
 
 ### Step 6：记录梦境到 dreams.json
 
@@ -268,10 +328,24 @@ print('saved')
 
 当用户说「抽签」「梦境签」「给我一签」时：
 
-**生成逻辑：**
+**生成逻辑（AI 动态生成，非固定模板）：**
 - 读取最近3天的梦境记录（若无则用当前梦）
 - 综合吉凶判定生成签级
-- 根据主要意象生成四字签语
+- **根据梦境核心意象，动态生成四句押韵签文**，要求：
+  - 每句7字，四句整体押韵（同一韵脚）
+  - 意象必须来源于梦境描述（水/火/蛇/飞翔/追逐等）
+  - 语言风格：古典、有意境，类唐诗/宋词气质
+  - 含义：前两句描述当前处境，后两句指向转机/结局
+  - 吉签：气势磅礴，充满希望；凶签：警示但不绝望，附励志解读
+  - 禁止使用现代词汇（手机、电脑、AI等）
+  - 示例意象映射：
+    - 水/海 → 「潮」「浪」「波」「渡」
+    - 蛇 → 「蜕」「龙」「腾」「盘」
+    - 飞翔 → 「翱」「云」「天」「翼」
+    - 追逐 → 「逐」「风」「尘」「路」
+    - 坠落 → 「沉」「渊」「归」「定」
+    - 火 → 「炬」「焰」「燃」「灰尽」
+    - 考试 → 「笔」「墨」「砚」「金榜」
 
 **签级对应：**
 - 大吉 → 上上签
@@ -329,6 +403,7 @@ print('saved')
 新增触发词：
 - 「今日运势」「今天运势」「根据梦境看今天」
 - 「抽签」「梦境签」「给我一签」「抽个签」
+- 「梦境图」「生成图片」「画出我的梦」「看看我的梦长什么样」
 
 ## 语气要求
 
