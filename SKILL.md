@@ -149,10 +149,10 @@ buttons:
 
 **🏛️ 神话史诗：**
 ```
-A young Asian male figure wearing flowing white and gold hanfu robes, [意象关键词融入人物与服饰],
+A young Asian male figure in modern casual clothes (t-shirt or shirt), [意象关键词融入场景与光效],
 soft divine light emanating from within, ancient stone columns fading into mist,
-Chinese mythology meets Greek epic art, pearl white amber and soft violet palette,
-cinematic composition, ultra-detailed fine brushwork, serene transcendent atmosphere,
+contemporary person in mythic dreamscape, pearl white amber and soft violet palette,
+cinematic composition, ultra-detailed, serene transcendent atmosphere,
 beautiful and elegant, perfect for social media
 ```
 
@@ -165,10 +165,10 @@ soft grey-blue and black tones, meditative and serene, master-level calligraphy 
 
 **🌌 赛博仙境：**
 ```
-Cyberpunk meets ancient Chinese mythology, [意象关键词], figure in glowing neon-lit hanfu,
-circuit patterns woven into traditional fabric, holographic jade artifacts floating,
+Cyberpunk dreamscape, [意象关键词], young Asian figure in modern streetwear with glowing neon accents,
+circuit patterns floating around them, holographic artifacts in the air,
 neon purple and electric blue against dark background, ultra-detailed, cinematic,
-futuristic divine aesthetic
+futuristic surreal aesthetic
 ```
 
 **🌸 梦幻唯美：**
@@ -479,6 +479,17 @@ print('saved')
 
 ## 语气要求
 
+### ⛔ 吉凶判定铁律（绝对不可违反）
+
+- **吉凶结果必须忠实于解读，不得为了让用户「感觉好」而篡改**
+- 解读是小凶就写小凶，解读是大凶就写大凶，绝对禁止把凶改成吉
+- 用户对结果有异议时，**不得修改已出的吉凶判定**，只能解释依据
+- 吉凶依据：周公解梦传统意象 + 荣格/弗洛伊德心理学分析，二者综合判断
+- 风格可以调整（语气轻松、加鼓励），但**吉凶事实本身不能动**
+- 示例：用户说「我觉得应该是小吉」→ 回应「这个梦的核心意象在传统解读里确实偏凶，我理解你可能感觉不那么负面，但解读结果要尊重事实」
+
+---
+
 - **有趣但不迷信**：用「民间认为」「传统说法」而非「一定会」
 - **科学但不冷漠**：心理学分析要有共鸣感
 - **吉凶要有力度**：大吉就说大吉，不要模棱两可
@@ -511,9 +522,10 @@ print('saved')
 
 ### 图片生成性别与风格规则
 
-- 默认生成**男性**人物（亚裔男性轮廓，神性光感）
+- 默认生成**男性**人物（亚裔男性，现代都市感，普通人气质）
 - 若用户明确说女性，则改为女性
-- 风格固定：**希腊神话 × 东方水墨**，柔光神性，适合发朋友圈
+- 风格固定：**现代写实 × 梦境超现实**，当代人物置于超自然梦境场景中，适合发朋友圈
+- **禁止汉服、古装、神话袍服**——人物穿着现代日常服装（T恤、衬衫、便服等）
 - 色调：珍珠白、琥珀金、薰衣草紫、深海蓝——**禁止暗红恐怖系**
 - 人物要有**带入感**：第一视角或略俯视角，让观者感觉「这就是我」
 - 梦境元素从人物**体内向外生长**，而非外部攻击——表达内在力量
