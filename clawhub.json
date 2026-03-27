@@ -1,6 +1,6 @@
 {
   "name": "dream-interpreter",
-  "version": "1.4.0",
+  "version": "1.4.3",
   "description": "科学 + 传统双轨解梦技能，带梦境记忆、日历、月报、语音播报",
   "author": "M0rr4R",
   "license": "MIT",
@@ -11,6 +11,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/YOUR_USERNAME/dream-interpreter"
+    "url": "https://github.com/M0rr4R/dream-interpreter"
   }
 }
