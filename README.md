@@ -1,8 +1,18 @@
-# 🌙 dream-interpreter — OpenClaw 周公解梦技能
+# 🌙 dream-interpreter — OpenClaw Dream Interpreter Skill
+
+<div align="center">
+
+**[中文](#-中文) · [English](#-english)**
+
+</div>
+
+---
+
+## 🇨🇳 中文
 
 > 科学 + 传统双轨解梦，站在你的角度理解你的梦，不是算命，是被看见。
 
-## ✨ 功能特性
+### ✨ 功能特性
 
 - 🔮 **双轨解读** — 传统周公解梦典故 + 现代心理学（荣格、弗洛伊德、威胁模拟理论），深度解析，不敷衍
 - 💬 **共鸣优先** — 先理解你的感受，再给出分析，让你感觉「这说的就是我」
@@ -18,15 +28,15 @@
 - 💾 **本地存储** — 所有记录保存在本地，隐私安全
 - 🔘 **互动按钮** — 解梦后自动弹出4个快捷按钮：语音播报 / 生成梦境图 / 抽梦境签 / 今日运势
 
-## 📦 安装方法
+### 📦 安装方法
 
-### 方法一：通过 ClawHub 安装（推荐）
+**方法一：通过 ClawHub 安装（推荐）**
 
 ```bash
 npx skills install dream-interpreter
 ```
 
-### 方法二：一键安装脚本
+**方法二：一键安装脚本**
 
 ```bash
 git clone https://github.com/Bonniesilva/dream-interpreter.git
@@ -34,7 +44,7 @@ cd dream-interpreter
 bash install.sh
 ```
 
-### 方法三：手动安装
+**方法三：手动安装**
 
 ```bash
 git clone https://github.com/Bonniesilva/dream-interpreter.git
@@ -42,7 +52,7 @@ cp -r dream-interpreter ~/.openclaw/skills/dream-interpreter
 openclaw gateway restart
 ```
 
-## 🗣️ 使用方法
+### 🗣️ 使用方法
 
 直接在对话中说：
 
@@ -51,8 +61,6 @@ openclaw gateway restart
 ```
 
 OpenClaw 会自动识别并触发解梦。
-
-### 触发词
 
 | 场景 | 说法示例 |
 |------|----------|
@@ -65,26 +73,7 @@ OpenClaw 会自动识别并触发解梦。
 | 月度报告 | 「梦境报告」「上个月梦境总结」 |
 | 今日运势 | 「今日运势」「根据梦境看今天」 |
 
-## 🧠 解读框架
-
-### 传统文化层（丰富，不敷衍）
-- 《周公解梦》经典意象典故，有来历有故事感
-- 民间吉凶说法（含财运意象：粪便、蛇、鱼、乌龟等）
-- 多角度解读：同一意象在不同情境下的不同含义
-- 内置 40+ 常见意象数据库
-
-### 科学心理学层（深入，有共鸣）
-- **荣格原型理论** — 水、火、飞翔、坠落、追逐等核心意象
-- **弗洛伊德** — 潜意识愿望的伪装实现
-- **威胁模拟理论** — 噩梦是大脑演练应对威胁
-- **记忆巩固理论** — REM 睡眠与近48小时情绪事件的关联
-
-### 共鸣原则
-- 先理解你做这个梦时的感受，再给出分析
-- 用「你最近可能...」而不是「这类梦通常...」
-- 结尾有一句直击内心的话，像朋友说的那种
-
-## 🎨 梦境图片风格
+### 🎨 梦境图片风格
 
 | 风格 | 人物 | 氛围 |
 |------|------|------|
@@ -95,22 +84,7 @@ OpenClaw 会自动识别并触发解梦。
 | 🌌 赛博仙境 | 街头服装+霓虹 | 科幻超现实，紫蓝发光 |
 | 🌸 梦幻唯美 | 柔光水彩 | 樱花治愈系，粉紫柔光 |
 
-## ⚖️ 吉凶判定原则
-
-**吉凶结果忠实于解读，不因用户喜好而篡改。**
-
-- 解读是小凶就写小凶，不会改成小吉让你「感觉好一点」
-- 遇到凶兆：先完整说明含义 → 然后给出具体鼓励和建议
-- 梦是心理信号，不是命运判决
-
-## 📁 数据存储
-
-梦境记录保存在：
-```
-~/.openclaw/workspace/memory/dreams/dreams.json
-```
-
-## 📋 示例输出
+###  示例输出
 
 > 梦境：「昨晚梦见一条大蛇追着我跑，最后我飞起来了」
 
@@ -133,18 +107,16 @@ OpenClaw 会自动识别并触发解梦。
 困境，只是还没找到那个起跳点。蛇在荣格体系中也象征蜕变，
 你可能正站在某个转型的临界点上。
 
-� 潜意识在说
+💡 潜意识在说
 你的内心已经准备好飞翔了，只是还没找到起跳点。
 
 💪 内心信号
-有点小起伏，但结局是飞起来的——这很重要。你不是在逃跑，
-你是在蓄力。财运和事业上那个「危险又没什么问题」的机会，
-可以大胆一点。
+有点小起伏，但结局是飞起来的——这很重要。财运和事业上那
+个「危险又没什么问题」的机会，可以大胆一点。
 
 ✨ 领域提示
-💰 财运：近期有起伏，但不必过度担忧，留意一个看似有风险
-实际稳健的机会。
-� 事业：蜕变期，突破口比你以为的近。
+💰 财运：近期有起伏，留意一个看似有风险实际稳健的机会。
+🚀 事业：蜕变期，突破口比你以为的近。
 
 🗓️ 今日建议
 遇到让你紧张的事先深呼吸——结果往往比你想象的好。
@@ -154,27 +126,124 @@ OpenClaw 会自动识别并触发解梦。
 [ 🔮 抽梦境签   ]  [ 🌅 今日运势   ]
 ```
 
-## 🔧 系统要求
+### 🔧 系统要求
 
 - [OpenClaw](https://openclaw.ai) v1.0+
 - 图片生成需要 OpenClaw 配置图像工具
 - 语音播报需要 OpenClaw 配置 TTS 工具
 
-## 🤝 贡献
+### 🤝 贡献
 
 欢迎提交 PR 扩充意象数据库！特别欢迎：
 - 更多民间吉凶意象
 - 不同文化的梦境解读（藏族、傣族等少数民族梦境文化）
 - 更多心理学理论框架
 
-## 📄 License
+### 📄 License
 
-MIT
-
-## 👤 作者
-
-由 [OpenClaw](https://openclaw.ai) 驱动构建 · [@Bonniesilva](https://github.com/Bonniesilva)
+MIT · 由 [OpenClaw](https://openclaw.ai) 驱动 · [@Bonniesilva](https://github.com/Bonniesilva)
 
 ---
 
-> 「梦是心理信号，不是命运判决。」
+## 🇬🇧 English
+
+> Science + tradition dual-track dream interpretation. Understanding your dreams from your perspective — not fortune-telling, but being truly seen.
+
+### ✨ Features
+
+- 🔮 **Dual-track Analysis** — Traditional Zhou Gong dream lore + modern psychology (Jung, Freud, Threat Simulation Theory), in-depth and never superficial
+- 💬 **Empathy First** — Acknowledges how the dream felt before giving analysis, so it resonates personally
+- ⚡ **Fortune Rating** — Great Fortune / Minor Fortune / Neutral / Minor Omen / Bad Omen — honest results, never softened to look good
+- 💪 **Always Encourages After Bad Omens** — States the meaning honestly, then immediately pivots to specific, actionable encouragement
+- 🎨 **Dream Vision Art** — 6 art styles to visualize your dream (Modern City / Mythic Epic / Ancient Fantasy / Ink Zen / Cyberpunk / Dreamy Pastel)
+- 🎙️ **Voice Narration** — Reply "narrate" to hear the interpretation read aloud via TTS
+- 🎋 **Dream Fortune Slip** — Draw a poetic 4-character fortune slip + today's outlook
+- 📅 **Dream Calendar** — Visualize this month's dream records with fortune markers
+- 📋 **Monthly Report** — Top recurring elements, emotional trends, and most significant dreams
+- 🧠 **Pattern Analysis** — Auto-detects recurring patterns after 3+ dream entries
+- 🔁 **Recurring Dream Alert** — Warns when the same elements appear within 14 days
+- 💾 **Local Storage** — All records saved locally, fully private
+- 🔘 **Interactive Buttons** — 4 quick-action buttons after every reading: Voice / Art / Fortune Slip / Today's Luck
+
+### 📦 Installation
+
+**Option 1: Via ClawHub (Recommended)**
+
+```bash
+npx skills install dream-interpreter
+```
+
+**Option 2: One-click install script**
+
+```bash
+git clone https://github.com/Bonniesilva/dream-interpreter.git
+cd dream-interpreter
+bash install.sh
+```
+
+**Option 3: Manual install**
+
+```bash
+git clone https://github.com/Bonniesilva/dream-interpreter.git
+cp -r dream-interpreter ~/.openclaw/skills/dream-interpreter
+openclaw gateway restart
+```
+
+### 🗣️ Usage
+
+Just say it naturally in your chat:
+
+```
+Last night I dreamed a giant snake was chasing me, and then I flew away
+```
+
+OpenClaw will automatically detect and trigger the skill.
+
+| Scenario | Example phrases |
+|----------|----------------|
+| Interpret dream | "I dreamed..." / "Help me interpret this dream" / "What does this dream mean?" |
+| Voice narration | "Narrate" / "Read it to me" / "Voice version" |
+| Dream art | "Dream art" / "Draw my dream" / "Generate image" |
+| Fortune slip | "Draw a slip" / "Fortune slip" / "Give me a sign" |
+| History | "Show my dream records" / "Recent dreams" |
+| Dream calendar | "Dream calendar" / "Show this month's dreams" |
+| Monthly report | "Dream report" / "Last month's dream summary" |
+| Today's fortune | "Today's fortune" / "What does my dream say about today?" |
+
+### 🎨 Art Styles
+
+| Style | Character | Atmosphere |
+|-------|-----------|------------|
+| 🏙️ Modern City | Everyday clothes | Ordinary person in surreal scene — most relatable |
+| 🏛️ Mythic Epic | Modern clothes + mythic setting | Contemporary meets epic, amber golden light |
+| 🎋 Ancient Fantasy | Hanfu robes | Xianxia aesthetic, ethereal beauty |
+| 🌊 Ink Zen | Ink painting style | Eastern negative space, zen stillness |
+| 🌌 Cyberpunk | Street wear + neon | Sci-fi surreal, violet-blue glow |
+| 🌸 Dreamy Pastel | Soft watercolor | Cherry blossom healing, pink-purple softness |
+
+### � Requirements
+
+- [OpenClaw](https://openclaw.ai) v1.0+
+- Image generation requires OpenClaw image tool configuration
+- Voice narration requires OpenClaw TTS tool configuration
+
+### 🤝 Contributing
+
+PRs welcome to expand the dream symbol database! Especially:
+- More folk omens and auspicious symbols
+- Dream interpretations from other cultures (Tibetan, Dai, etc.)
+- Additional psychology frameworks
+
+### 📄 License
+
+MIT · Powered by [OpenClaw](https://openclaw.ai) · [@Bonniesilva](https://github.com/Bonniesilva)
+
+---
+
+<div align="center">
+
+*「Dreams are psychological signals, not fate verdicts.」*
+
+*「梦是心理信号，不是命运判决。」*
+
+</div>
