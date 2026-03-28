@@ -480,10 +480,23 @@ image.convert('RGB').save(str(out),'PNG')
 print(f'Image saved: {out.resolve()}')
 ```
 
-**第四步：发送图片**
+**第四步：发送图片（必须带按钮）**
 
-用 `message` 工具发送，caption：
-`🎨 梦境幻象图 · [今日日期]\n[风格名] 风格 · 可保存转发`
+用 `message` 工具发送，caption 和 buttons 必须同时携带：
+
+```json
+{
+  "action": "send",
+  "message": "🎨 梦境幻象图 · [今日日期]\n[风格名] 风格 · 可保存转发",
+  "image": "[图片路径]",
+  "buttons": [
+    [{"text": "🎙️ 听语音播报", "callback_data": "dream_tts"}, {"text": "🎨 换个风格", "callback_data": "dream_image"}],
+    [{"text": "🔮 抽梦境签", "callback_data": "dream_sign"}, {"text": "🌅 今日运势", "callback_data": "dream_fortune"}]
+  ]
+}
+```
+
+**🚨 图片发送铁律：图片消息必须携带 buttons，绝对禁止只发图片不带按钮。**
 
 若用户选择「跳过」或生成失败，静默跳过，不影响主流程。
 
