@@ -14,7 +14,7 @@ allowed-tools: message, bash, tts
 
 **第一步：立即用 `message` 工具发送确认消息（无按钮）：**
 ```json
-{"action": "send", "message": "🌙 解梦技能已启动，正在为你解读……"}
+{"action": "send", "channel": "telegram", "message": "🌙 解梦技能已启动，正在为你解读……"}
 ```
 
 **第二步：完成解读后，用 `message` 工具发送完整报告（含按钮）。**
@@ -219,6 +219,7 @@ allowed-tools: message, bash, tts
 ```json
 {
   "action": "send",
+  "channel": "telegram",
   "message": "[完整解梦报告]",
   "interactive": {
     "blocks": [
@@ -307,6 +308,7 @@ allowed-tools: message, bash, tts
 ```json
 {
   "action": "send",
+  "channel": "telegram",
   "message": "[完整运势报告]",
   "interactive": {
     "blocks": [
@@ -513,6 +515,7 @@ print(f'Image saved: {out.resolve()}')
 ```json
 {
   "action": "send",
+  "channel": "telegram",
   "message": "🎨 梦境幻象图 · [今日日期]\n[风格名] 风格 · 可保存转发",
   "image": "[图片路径]",
   "interactive": {
@@ -774,6 +777,7 @@ print('saved')
 ```json
 {
   "action": "send",
+  "channel": "telegram",
   "message": "[完整签文]",
   "interactive": {
     "blocks": [
