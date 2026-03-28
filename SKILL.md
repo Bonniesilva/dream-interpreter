@@ -221,12 +221,11 @@ allowed-tools: ["message", "bash", "tts"]
 {
   "action": "send",
   "message": "[完整解梦报告]",
-  "buttons": [
-    [{"text": "🎙️ 听语音播报", "callback_data": "dream_tts"}, {"text": "🎨 生成梦境图", "callback_data": "dream_image"}],
-    [{"text": "🔮 抽梦境签", "callback_data": "dream_sign"}, {"text": "🌅 今日运势", "callback_data": "dream_fortune"}]
-  ]
+  "buttons": "[[{\"text\":\"🎙️ 听语音播报\",\"callback_data\":\"dream_tts\"},{\"text\":\"🎨 生成梦境图\",\"callback_data\":\"dream_image\"}],[{\"text\":\"🔮 抽梦境签\",\"callback_data\":\"dream_sign\"},{\"text\":\"🌅 今日运势\",\"callback_data\":\"dream_fortune\"}]]"
 }
 ```
+
+> ⚠️ 注意：`buttons` 必须是**字符串**（字符串化的 JSON 二维数组），不能是 JSON 对象。
 
 大凶解读务必加：「记住，梦是心理信号，不是命运判决。」
 
@@ -300,10 +299,7 @@ allowed-tools: ["message", "bash", "tts"]
 {
   "action": "send",
   "message": "[完整运势报告]",
-  "buttons": [
-    [{"text": "🎙️ 听语音播报", "callback_data": "dream_tts"}, {"text": "🎨 生成梦境图", "callback_data": "dream_image"}],
-    [{"text": "🔮 抽梦境签", "callback_data": "dream_sign"}, {"text": "🌅 今日运势", "callback_data": "dream_fortune"}]
-  ]
+  "buttons": "[[{\"text\":\"🎙️ 听语音播报\",\"callback_data\":\"dream_tts\"},{\"text\":\"🎨 生成梦境图\",\"callback_data\":\"dream_image\"}],[{\"text\":\"🔮 抽梦境签\",\"callback_data\":\"dream_sign\"},{\"text\":\"🌅 今日运势\",\"callback_data\":\"dream_fortune\"}]]"
 }
 ```
 
@@ -498,10 +494,7 @@ print(f'Image saved: {out.resolve()}')
   "action": "send",
   "message": "🎨 梦境幻象图 · [今日日期]\n[风格名] 风格 · 可保存转发",
   "image": "[图片路径]",
-  "buttons": [
-    [{"text": "🎙️ 听语音播报", "callback_data": "dream_tts"}, {"text": "🎨 换个风格", "callback_data": "dream_image"}],
-    [{"text": "🔮 抽梦境签", "callback_data": "dream_sign"}, {"text": "🌅 今日运势", "callback_data": "dream_fortune"}]
-  ]
+  "buttons": "[[{\"text\":\"🎙️ 听语音播报\",\"callback_data\":\"dream_tts\"},{\"text\":\"🎨 换个风格\",\"callback_data\":\"dream_image\"}],[{\"text\":\"🔮 抽梦境签\",\"callback_data\":\"dream_sign\"},{\"text\":\"🌅 今日运势\",\"callback_data\":\"dream_fortune\"}]]"
 }
 ```
 
@@ -749,10 +742,7 @@ print('saved')
 {
   "action": "send",
   "message": "[完整签文]",
-  "buttons": [
-    [{"text": "🎙️ 听语音播报", "callback_data": "dream_tts"}, {"text": "🎨 生成梦境图", "callback_data": "dream_image"}],
-    [{"text": "🔮 再抽一签", "callback_data": "dream_sign"}, {"text": "🌅 今日运势", "callback_data": "dream_fortune"}]
-  ]
+  "buttons": "[[{\"text\":\"🎙️ 听语音播报\",\"callback_data\":\"dream_tts\"},{\"text\":\"🎨 生成梦境图\",\"callback_data\":\"dream_image\"}],[{\"text\":\"🔮 再抽一签\",\"callback_data\":\"dream_sign\"},{\"text\":\"🌅 今日运势\",\"callback_data\":\"dream_fortune\"}]]"
 }
 ```
 
